@@ -1,0 +1,72 @@
+﻿@model IEnumerable<VasaHotel.Models.Booking>
+
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h1>Index</h1>
+
+<p>
+    <a asp-action="Create">Create New</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.checkout_day)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.checkin_day)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.method_payment)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.is_payment)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Customer)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Room)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.total_price)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.checkout_day)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.checkin_day)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.method_payment)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.is_payment)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Customer.customer_id)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Room.room_id)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.total_price)
+            </td>
+            <td>
+                <a asp-action="Edit" asp-route-id="@item.booking_id">Edit</a> |
+                <a asp-action="Details" asp-route-id="@item.booking_id">Details</a> |
+                <a asp-action="Delete" asp-route-id="@item.booking_id">Delete</a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>
