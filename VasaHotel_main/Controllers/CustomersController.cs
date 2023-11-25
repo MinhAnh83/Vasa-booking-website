@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
@@ -10,6 +11,7 @@ using VasaHotel_main.Areas.Identity.Data;
 
 namespace VasaHotel_main.Controllers
 {
+    [Authorize(Roles = "Staff, Admin")]
     public class CustomersController : Controller
     {
         private readonly VasaHotelContext _context;
@@ -20,9 +22,18 @@ namespace VasaHotel_main.Controllers
         }
 
         // GET: Customers
-        public async Task<IActionResult> Index()
+        public async Task<IActionResult> Index(string searchString)
         {
-            return View(await _context.Customer.ToListAsync());
+            var customers = from m in _context.Customer
+                         select m;
+
+            if (!String.IsNullOrEmpty(searchString))
+            {
+                customers = customers.Where(s => s.fullname.Contains(searchString));
+            }
+
+            return View(await customers.ToListAsync());
+           
         }
 
         // GET: Customers/Details/5

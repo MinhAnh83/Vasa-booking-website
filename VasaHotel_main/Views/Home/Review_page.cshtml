@@ -1,0 +1,51 @@
+﻿@model IEnumerable<VasaHotel.Models.Review>
+
+@{
+    ViewData["Title"] = "Review page";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="rd-reviews">
+    <h4>Evaluation</h4>
+    @foreach (var item in Model)
+    {
+        <div class="review-item">
+            <div class="ri-pic">
+                <img src="~/image/room/avatar/avatar-2.jpg" alt="">
+            </div>
+            <h5> @Html.DisplayFor(modelItem => item.Name)</h5>
+            <div class="ri-text">
+                <span>  @Html.DisplayFor(modelItem => item.Day)</span>
+                <div class="rating">
+                    @Html.DisplayFor(modelItem => item.Rating)
+                </div>
+                <p>
+                    @Html.DisplayFor(modelItem => item.Review_content)
+                </p>
+            </div>
+        </div>
+    }
+</div>
+<a asp-action="Create_review" >Create New</a>
+
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Day)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Rating)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Review_content)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Room)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+
+</table>

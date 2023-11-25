@@ -4,6 +4,7 @@ using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Text;
 using System.Text.Encodings.Web;
+using System.Threading;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Authorization;
@@ -14,6 +15,7 @@ using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.AspNetCore.WebUtilities;
 using Microsoft.Extensions.Logging;
 using VasaHotel_main.Areas.Identity.Data;
+using VasaHotel_main.Constants;
 
 namespace VasaHotel_main.Areas.Identity.Pages.Account
 {
@@ -89,10 +91,15 @@ namespace VasaHotel_main.Areas.Identity.Pages.Account
                 user.FirstName = Input.FirstName;
                 user.LastName = Input.LastName;
                 var result = await _userManager.CreateAsync(user, Input.Password);
+               
+                
                 if (result.Succeeded)
                 {
+                    await _userManager.AddToRoleAsync(user, Roles.Staff.ToString());
+                    await _userManager.AddToRoleAsync(user, Roles.Customer.ToString());
                     _logger.LogInformation("User created a new account with password.");
-
+                    var userId = await _userManager.GetUserIdAsync(user);
+                  
                     var code = await _userManager.GenerateEmailConfirmationTokenAsync(user);
                     code = WebEncoders.Base64UrlEncode(Encoding.UTF8.GetBytes(code));
                     var callbackUrl = Url.Page(

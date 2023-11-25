@@ -1,0 +1,61 @@
+﻿@model VasaHotel.Models.Booking
+
+@{
+    ViewData["Title"] = "Details";
+    Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
+}
+
+<h1>Details</h1>
+
+<div>
+    <h4>Booking</h4>
+    <hr />
+    <dl class="row">
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.checkout_day)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.checkout_day)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.checkin_day)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.checkin_day)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.method_payment)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.method_payment)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.is_payment)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.is_payment)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Customer)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Customer.customer_id)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Room)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Room.room_id)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.total_price)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.total_price)
+        </dd>
+    </dl>
+</div>
+<div>
+    <a asp-action="Edit" asp-route-id="@Model.booking_id">Edit</a> |
+    <a asp-action="Index">Back to List</a>
+</div>

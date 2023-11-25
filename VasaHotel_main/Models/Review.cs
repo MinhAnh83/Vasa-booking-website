@@ -13,9 +13,10 @@ namespace VasaHotel.Models
         public int review_id { get; set; }
         [Required]
 
-
+        public string Name { get; set; }
         public DateTime Day { get; set; }
         public int Rating { get; set; }
+       // public string Name { get; set; }
         public string Review_content { get; set; }
 
         public int RoomID { get; set; }

@@ -1,0 +1,49 @@
+﻿@model VasaHotel.Models.Blog
+
+@{
+    ViewData["Title"] = "Details";
+    Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
+}
+
+<h1>Details</h1>
+
+<div>
+    <h4>Blog</h4>
+    <hr />
+    <dl class="row">
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.author_name)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.author_name)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.day_published)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.day_published)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.Title)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.Title)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.Content)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.Content)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.Images)
+        </dt>
+        <dd class="col-sm-10">
+            <img src="~/Upload/Images/@Model.Images" width="250px" height="250px" />
+        </dd>
+    </dl>
+</div>
+<div>
+    <a asp-action="Edit" asp-route-id="@Model.blog_id">Edit blog</a> |
+    <a asp-action="Index">Back to List</a>
+</div>

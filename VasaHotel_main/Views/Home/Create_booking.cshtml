@@ -1,0 +1,59 @@
+﻿@model VasaHotel.Models.Booking
+
+@{
+    ViewData["Title"] = "Create";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    var data = ViewBag.Price;
+}
+
+<div style="text-align: center">
+    <h4>Step <span>2</span> </h4>
+    <h6><strong>INPUT INFORMATION OF BOOKING</strong> </h6>
+    <img src="~/image/admin_logo.png" />
+</div>
+
+
+
+<img src="~/image/hero/hero-2.jpg" />
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Create_booking" >
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="checkout_day" class="control-label"></label>
+                <input asp-for="checkout_day" class="form-control" />
+                <span asp-validation-for="checkout_day" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="checkin_day" class="control-label"></label>
+                <input asp-for="checkin_day" class="form-control" />
+                <span asp-validation-for="checkin_day" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="method_payment" class="control-label"></label>
+                <input asp-for="method_payment" class="form-control" />
+                <span asp-validation-for="method_payment" class="text-danger"></span>
+            </div>
+         
+
+          
+            <div class="form-group">
+              <h5>Price</h5>
+                <p>@data</p>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Create" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index">Back to List</a>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}
+

@@ -2,7 +2,7 @@
 
 @{
     ViewData["Title"] = "Create";
-    Layout = "~/Views/Shared/_Layout.cshtml";
+    Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
 }
 
 <h1>Create</h1>
@@ -11,7 +11,7 @@
 <hr />
 <div class="row">
     <div class="col-md-4">
-        <form asp-action="Create">
+        <form asp-action="Create" enctype="multipart/form-data">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
             <div class="form-group">
                 <label asp-for="TyperoomID" class="control-label"></label>
@@ -28,9 +28,9 @@
                 <span asp-validation-for="Status" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="Image" class="control-label"></label>
-                <input asp-for="Image" class="form-control" />
-                <span asp-validation-for="Image" class="text-danger"></span>
+              
+                <input type="file" id="uploadhinh" name="uploadhinh"  accept="image/*" />
+               
             </div>
             <div class="form-group">
                 <label asp-for="Description" class="control-label"></label>
@@ -48,6 +48,3 @@
     <a asp-action="Index">Back to List</a>
 </div>
 
-@section Scripts {
-    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
-}

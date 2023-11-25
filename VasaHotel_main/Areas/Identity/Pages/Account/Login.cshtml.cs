@@ -16,6 +16,7 @@ using VasaHotel_main.Areas.Identity.Data;
 namespace VasaHotel_main.Areas.Identity.Pages.Account
 {
     [AllowAnonymous]
+  
     public class LoginModel : PageModel
     {
         private readonly UserManager<VasaHotelUser> _userManager;
@@ -85,7 +86,16 @@ namespace VasaHotel_main.Areas.Identity.Pages.Account
                 var result = await _signInManager.PasswordSignInAsync(Input.Email, Input.Password, Input.RememberMe, lockoutOnFailure: false);
                 if (result.Succeeded)
                 {
+                    var user = await _userManager.FindByEmailAsync(Input.Email);
                     _logger.LogInformation("User logged in.");
+
+                    var roles = await _userManager.GetRolesAsync(user);
+                    if (roles.Contains("Admin"))
+                    {
+                        return RedirectToAction("Index", "Rooms");
+                        
+                    }
+                       
                     return LocalRedirect(returnUrl);
                 }
                 if (result.RequiresTwoFactor)

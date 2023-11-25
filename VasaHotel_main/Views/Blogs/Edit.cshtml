@@ -2,54 +2,57 @@
 
 @{
     ViewData["Title"] = "Edit";
-    Layout = "~/Views/Shared/_Layout.cshtml";
+    Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
 }
 
-<h1>Edit</h1>
 
-<h4>Blog</h4>
+
+<h4>Edit Blog</h4>
 <hr />
 <div class="row">
     <div class="col-md-4">
-        <form asp-action="Edit">
+        <form asp-action="Edit" enctype="multipart/form-data">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
             <input type="hidden" asp-for="blog_id" />
             <div class="form-group">
-                <label asp-for="author_name" class="control-label"></label>
+                <h6>Author's name: </h6>
                 <input asp-for="author_name" class="form-control" />
                 <span asp-validation-for="author_name" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="day_published" class="control-label"></label>
-                <input asp-for="day_published" class="form-control"  />
+                <h6>Published Day: </h6>
+                <input asp-for="day_published" class="form-control" />
                 <span asp-validation-for="day_published" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="Title" class="control-label"></label>
+                <h6>Title: </h6>
                 <input asp-for="Title" class="form-control" />
                 <span asp-validation-for="Title" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="Content" class="control-label"></label>
+                <h6>Content: </h6>
                 <input asp-for="Content" class="form-control" type="text" />
                 <span asp-validation-for="Content" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="Images" class="control-label"></label>
-                <input asp-for="Images" class="form-control" type="file"/>
-                <span asp-validation-for="Images" class="text-danger"></span>
+                <h6>Update image: </h6>
+                <input type="file" id="uploadhinh1" name="uploadhinh1" accept="image/*" />
+
             </div>
             <div class="form-group">
-                <input type="submit" value="Save" class="btn btn-primary" />
+                <input type="submit" style="background-color: paleturquoise; padding: 10px; border-radius: 10px; color: white; margin-top: 2px; margin-bottom: 10px; font-size: 14px; font-weight: 600; letter-spacing: 2px;" value="Save" class="btn btn-primary" />
+            </div>
+            <div>
+                <a asp-action="Index">Back to Manage Blog Page</a>
             </div>
         </form>
     </div>
-</div>
+    <div class="col-md-8">
+        <img src="~/image/hero/hero-3.jpg" width="700px" height="550px"/>
+    </div>
 
-<div>
-    <a asp-action="Index">Back to List</a>
-</div>
+    
 
-@section Scripts {
-    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
-}
+    @section Scripts {
+        @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+    }

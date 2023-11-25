@@ -34,6 +34,7 @@ namespace VasaHotel_main.Areas.Identity.Pages.Account
             if (returnUrl != null)
             {
                 return LocalRedirect(returnUrl);
+                //return RedirectToAction("Index", "Home", new { area = "" });
             }
             else
             {

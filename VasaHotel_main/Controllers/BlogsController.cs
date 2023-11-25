@@ -1,7 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Hosting;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
@@ -10,13 +14,16 @@ using VasaHotel_main.Areas.Identity.Data;
 
 namespace VasaHotel_main.Controllers
 {
+    [Authorize(Roles = "Staff, Admin")]
     public class BlogsController : Controller
     {
         private readonly VasaHotelContext _context;
+        private readonly IWebHostEnvironment _hostEnvironment;
 
-        public BlogsController(VasaHotelContext context)
+        public BlogsController(VasaHotelContext context, IWebHostEnvironment hostEnvironment)
         {
             _context = context;
+            _hostEnvironment = hostEnvironment;
         }
 
         // GET: Blogs
@@ -54,12 +61,49 @@ namespace VasaHotel_main.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("blog_id,author_name,day_published,Title,Content,Images")] Blog blog)
+        public async Task<IActionResult> Create([Bind("blog_id,author_name,day_published,Title,Content,Images")] Blog blog, List<IFormFile> uploadhinh1)
         {
+            _context.Add(blog);
+            await _context.SaveChangesAsync();
             if (ModelState.IsValid)
             {
-                _context.Add(blog);
-                await _context.SaveChangesAsync();
+                int id;
+                var lastBlog = _context.Blog.ToList().LastOrDefault();
+                if (lastBlog != null)
+                {
+                    id = lastBlog.blog_id;
+                }
+                else
+                {
+                    id = 0;
+                }
+
+
+                if (uploadhinh1 != null && uploadhinh1.Count >= 0)
+                {
+                    string _Filename = "";
+                    foreach (var file in uploadhinh1)
+                    {
+                        int index = file.FileName.IndexOf('.');
+                        _Filename = "blog" + id.ToString() + "." + file.FileName.Substring(index + 1);
+                        string path = Path.Combine(_hostEnvironment.WebRootPath, "Uploads/Images", _Filename);
+
+                        using (var stream = new FileStream(path, FileMode.Create))
+                        {
+                            await file.CopyToAsync(stream);
+                        }
+                        Blog unv = _context.Blog.FirstOrDefault(x => x.blog_id == id);
+                        if (unv != null)
+                        {
+                            unv.Images = _Filename;
+
+                        }
+                        await _context.SaveChangesAsync();
+
+                    }
+                }
+
+
                 return RedirectToAction(nameof(Index));
             }
             return View(blog);
@@ -86,7 +130,7 @@ namespace VasaHotel_main.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("blog_id,author_name,day_published,Title,Content,Images")] Blog blog)
+        public async Task<IActionResult> Edit(int id, [Bind("blog_id,author_name,day_published,Title,Content,Images")] Blog blog, List<IFormFile> uploadhinh1)
         {
             if (id != blog.blog_id)
             {
@@ -99,6 +143,29 @@ namespace VasaHotel_main.Controllers
                 {
                     _context.Update(blog);
                     await _context.SaveChangesAsync();
+                    if (uploadhinh1 != null && uploadhinh1.Count > 0)
+                    {
+                        string _Filename = "";
+                        foreach (var file in uploadhinh1)
+                        {
+                            int index = file.FileName.IndexOf('.');
+                            _Filename = "blog" + id.ToString() + "." + file.FileName.Substring(index + 1);
+                            string path = Path.Combine(_hostEnvironment.WebRootPath, "Uploads/Images", _Filename);
+
+                            using (var stream = new FileStream(path, FileMode.Create))
+                            {
+                                await file.CopyToAsync(stream);
+                            }
+                            Blog unv = _context.Blog.FirstOrDefault(x => x.blog_id == id);
+                            if (unv != null)
+                            {
+                                unv.Images = _Filename;
+
+                            }
+                            await _context.SaveChangesAsync();
+
+                        }
+                    }
                 }
                 catch (DbUpdateConcurrencyException)
                 {

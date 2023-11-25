@@ -253,9 +253,6 @@ namespace VasaHotel_main.Migrations
                     b.Property<string>("gender")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("password")
-                        .HasColumnType("nvarchar(max)");
-
                     b.Property<string>("telephone")
                         .HasColumnType("nvarchar(max)");
 
@@ -273,6 +270,10 @@ namespace VasaHotel_main.Migrations
 
                     b.Property<DateTime>("Day")
                         .HasColumnType("datetime2");
+
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<int>("Rating")
                         .HasColumnType("int");
@@ -300,7 +301,7 @@ namespace VasaHotel_main.Migrations
                     b.Property<string>("Description")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("Image")
+                    b.Property<string>("ImageName")
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Name")

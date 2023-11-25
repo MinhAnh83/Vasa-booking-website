@@ -5,45 +5,55 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h1>Details</h1>
+
 
 <div>
-    <h4>Blog</h4>
-    <hr />
-    <dl class="row">
-        <dt class="col-sm-2">
-            @Html.DisplayNameFor(model => model.author_name)
-        </dt>
-        <dd class="col-sm-10">
-            @Html.DisplayFor(model => model.author_name)
-        </dd>
-        <dt class="col-sm-2">
-            @Html.DisplayNameFor(model => model.day_published)
-        </dt>
-        <dd class="col-sm-10">
-            @Html.DisplayFor(model => model.day_published)
-        </dd>
-        <dt class="col-sm-2">
-            @Html.DisplayNameFor(model => model.Title)
-        </dt>
-        <dd class="col-sm-10">
-            @Html.DisplayFor(model => model.Title)
-        </dd>
-        <dt class="col-sm-2">
-            @Html.DisplayNameFor(model => model.Content)
-        </dt>
-        <dd class="col-sm-10">
-            @Html.DisplayFor(model => model.Content)
-        </dd>
-        <dt class="col-sm-2">
-            @Html.DisplayNameFor(model => model.Images)
-        </dt>
-        <dd class="col-sm-10">
-            @Html.DisplayFor(model => model.Images)
-        </dd>
-    </dl>
+
+  
+    <section class="blog-details-hero set-bg" data-setbg="">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-10 offset-lg-1"  >
+                    <div class="bd-hero-text">
+
+                        <h2  style="color:black; margin-top:-38px">      @Html.DisplayFor(model => model.Title)</h2>
+                        <ul>
+                            <li class="b-time"><i class="icon_clock_alt"></i>  @Html.DisplayFor(model => model.day_published)</li>
+                            <li><i class="icon_profile"></i>   @Html.DisplayFor(model => model.author_name)</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <section class="blog-details-section">
+        <div class="container">
+            <div class="row" style="text-align: center">
+
+                <img src="~/Uploads/Images/@Model.Images" width="500vh" style="margin-left: 219px; margin-bottom: 32px; margin-top: -214px;" alt="">
+
+                
+            </div>
+            <div class="row">
+                <div class="col-lg-10 offset-lg-1">
+                    <div class="blog-details-text">
+                    
+                            <div class="bd-more-text">
+                                <div class="bm-item">
+                                    <h5 style="text-align:center;letter-spacing: 3px">Content</h5>
+                                    <p  style="text-align: justify;" >
+                                        @Html.DisplayFor(model => model.Content)
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+</section>
+     
 </div>
 <div>
-    <a asp-action="Edit" asp-route-id="@Model.blog_id">Edit</a> |
-    <a asp-action="Index">Back to List</a>
+   
+    <a asp-action="Index">Back to Blog page</a>
 </div>

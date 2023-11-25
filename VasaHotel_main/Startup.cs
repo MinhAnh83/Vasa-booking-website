@@ -13,6 +13,10 @@ using System.Linq;
 using System.Threading.Tasks;
 using VasaHotel_main.Data;
 using VasaHotel_main.Areas.Identity.Data;
+using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc.Authorization;
+
+
 namespace VasaHotel_main
 {
     public class Startup
@@ -33,12 +37,19 @@ namespace VasaHotel_main
             services.AddDatabaseDeveloperPageExceptionFilter();
 
             services.AddDefaultIdentity<VasaHotelUser>(options => options.SignIn.RequireConfirmedAccount = true)
-                .AddEntityFrameworkStores<VasaHotelContext>();
-            services.AddControllersWithViews();
-        }
+                 .AddRoles<IdentityRole>()
+                .AddEntityFrameworkStores<VasaHotelContext>()
+            .AddDefaultUI()
+            .AddDefaultTokenProviders();
 
+            services.AddControllersWithViews();
+          
+           
+
+        }
+       
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
-        public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
+        public async void Configure(IApplicationBuilder app, IWebHostEnvironment env)
         {
             if (env.IsDevelopment())
             {
@@ -58,7 +69,7 @@ namespace VasaHotel_main
 
             app.UseAuthentication();
             app.UseAuthorization();
-            
+         
             app.UseEndpoints(endpoints =>
             {
 
@@ -71,13 +82,25 @@ namespace VasaHotel_main
                
                 endpoints.MapRazorPages(); 
             });
-            app.UseEndpoints(endpoints =>
+              app.UseEndpoints(endpoints =>
+              {
+                  endpoints.MapControllerRoute(
+                    name: "Admin",
+                    pattern: "{area:exists}/{controller=Home}/{action=Index}/{id?}"
+                  );
+                  endpoints.MapAreaControllerRoute(
+                       name: "Admin",
+                       areaName: "Admin",
+                       pattern: "Admin/{controller=Home}/{action=Index}"
+                   );
+              });
+
+           /* using (var scope = app.ApplicationServices.CreateScope())
             {
-                endpoints.MapControllerRoute(
-                  name: "Admin",
-                  pattern: "{area:exists}/{controller=Home}/{action=Index}/{id?}"
-                );
-            });
+                var serviceProvider = scope.ServiceProvider;
+                await DbSeeder.SeedRolesAndAdminAsync(serviceProvider);
+            }*/
+            
 
 
         }

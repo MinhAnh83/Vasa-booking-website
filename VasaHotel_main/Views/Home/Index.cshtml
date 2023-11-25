@@ -19,16 +19,16 @@
             </div>
             <div class="row">
                 <div class="col-lg-4 col-sm-6">
-                    
-                        <div class="service-item">
-                            <i class="flaticon-036-parking"></i>
-                            <h4>Travel Plan</h4>
-                            <p>
-                                It is important to take care of the customer ,
-                                and the patient will be followed, but at the same time, they will occur as a result of great effort and pain.
-                            </p>
-                        </div>
-                    
+
+                    <div class="service-item">
+                        <i class="flaticon-036-parking"></i>
+                        <h4>Travel Plan</h4>
+                        <p>
+                            It is important to take care of the customer ,
+                            and the patient will be followed, but at the same time, they will occur as a result of great effort and pain.
+                        </p>
+                    </div>
+
 
                 </div>
                 <div class="col-lg-4 col-sm-6">
@@ -84,18 +84,18 @@
         </div>
     </section>
 </div>
-<div class="container">
+<div class="container-fluid" style="background-image: url('https://t3.ftcdn.net/jpg/00/29/13/38/360_F_29133877_bfA2n7cWV53fto2BomyZ6pyRujJTBwjd.jpg'); background-repeat: no-repeat; background-size: cover; ">
     <section>
-        <div class="container" style="background-image: url('~/wwwroot/image/hero/hero-1.jpg'); height: 100vh; margin-bottom: 20px">
+        <div class="container" style="background-image: url('https://www.hoteljob.vn/files/quang-ba-khach-san.jpg'); background-repeat: no-repeat; background-size: cover; height: 100vh; margin-bottom: 20px ">
             <div class="row">
                 <div class="col-lg-6">
                     <div class="hero-text">
-                        <h1 style="color:black">Vasa A Luxury Hotel</h1>
-                        <p style="color:black">
+                        <h1 style="color:white">Vasa A Luxury Hotel</h1>
+                        <p style="color:white">
                             Here are the best hotel booking sites, including recommendations for international
                             travel and for finding low-priced hotel rooms.
                         </p>
-                        <a href="#" class="primary-btn" style="color:black">Discover Now</a>
+                        <a href="#" class="primary-btn" style="color:white">Discover Now</a>
                     </div>
                 </div>
 
@@ -104,16 +104,19 @@
 
     </section>
 </div>
+<h5 style="text-align: center; padding: 20px; letter-spacing: 5px; font-weight: 800;">ROOMS</h5>
 <div class="container>
+
     <section class="rooms-section spad">
         <div class="container">
-            <h5>Rooms</h5>
+
             <div class="row">
                 @foreach (var item in Model)
                 {
                     <div class="col-lg-4 col-md-6">
                         <div class="room-item">
-                            <img src="@Url.Content("~/image/room/"+ item.Image)" />
+                            
+                            <img src="~/Upload/Images/@item.ImageName" width="350px" height="224px" />
                             <div class="ri-text">
                                 <h4>  @Html.DisplayFor(modelItem => item.Name)</h4>
 
@@ -139,13 +142,7 @@
                 }
 
 
-                <div class="col-lg-12">
-                    <div class="room-pagination">
-                        <a href="#">1</a>
-                        <a href="#">2</a>
-                        <a href="#">Next <i class="fa fa-long-arrow-right"></i></a>
-                    </div>
-                </div>
+
             </div>
         </div>
     </section>

@@ -57,7 +57,7 @@ namespace VasaHotel_main.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("review_id,Day,Rating,Review_content,RoomID")] Review review)
+        public async Task<IActionResult> Create([Bind("review_id,Name,Day,Rating,Review_content,RoomID")] Review review)
         {
             if (ModelState.IsValid)
             {
@@ -91,7 +91,7 @@ namespace VasaHotel_main.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("review_id,Day,Rating,Review_content,RoomID")] Review review)
+        public async Task<IActionResult> Edit(int id, [Bind("review_id,Name,Day,Rating,Review_content,RoomID")] Review review)
         {
             if (id != review.review_id)
             {

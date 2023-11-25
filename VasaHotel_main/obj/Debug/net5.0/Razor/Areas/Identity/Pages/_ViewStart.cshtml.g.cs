@@ -41,7 +41,7 @@ using VasaHotel_main.Areas.Identity.Data;
 #line hidden
 #nullable disable
     [global::Microsoft.AspNetCore.Razor.Hosting.RazorSourceChecksumAttribute(@"SHA1", @"13b82ef97968a56a4de533f67cf3e21d662f41aa", @"/Areas/Identity/Pages/_ViewStart.cshtml")]
-    [global::Microsoft.AspNetCore.Razor.Hosting.RazorSourceChecksumAttribute(@"SHA1", @"95e65a0097d10cf2bd78fa0372fffc0e2e9f0791", @"/Areas/Identity/Pages/_ViewImports.cshtml")]
+    [global::Microsoft.AspNetCore.Razor.Hosting.RazorSourceChecksumAttribute(@"SHA1", @"ef3147e14140c2ab8f7f6ddf83a3263b9763cff8", @"/Areas/Identity/Pages/_ViewImports.cshtml")]
     public class Areas_Identity_Pages__ViewStart : global::Microsoft.AspNetCore.Mvc.Razor.RazorPage<dynamic>
     {
         #pragma warning disable 1998

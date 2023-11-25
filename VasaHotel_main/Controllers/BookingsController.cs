@@ -2,14 +2,17 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using VasaHotel.Models;
 using VasaHotel_main.Areas.Identity.Data;
+using VasaHotel_main.Constants;
 
 namespace VasaHotel_main.Controllers
 {
+    [Authorize(Roles = "Staff, Admin")]
     public class BookingsController : Controller
     {
         private readonly VasaHotelContext _context;
@@ -50,7 +53,7 @@ namespace VasaHotel_main.Controllers
         public IActionResult Create()
         {
             ViewData["CustomerID"] = new SelectList(_context.Customer, "customer_id", "customer_id");
-            ViewData["RoomID"] = new SelectList(_context.Room, "room_id", "room_id");
+            ViewData["RoomID"] = new SelectList(_context.Room, "room_id", "Name");
             return View();
         }
 
@@ -68,7 +71,7 @@ namespace VasaHotel_main.Controllers
                 return RedirectToAction(nameof(Index));
             }
             ViewData["CustomerID"] = new SelectList(_context.Customer, "customer_id", "customer_id", booking.CustomerID);
-            ViewData["RoomID"] = new SelectList(_context.Room, "room_id", "room_id", booking.RoomID);
+            ViewData["RoomID"] = new SelectList(_context.Room, "room_id", "Name", booking.RoomID);
             return View(booking);
         }
 

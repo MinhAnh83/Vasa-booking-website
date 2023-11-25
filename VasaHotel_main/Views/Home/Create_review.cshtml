@@ -1,0 +1,44 @@
+﻿@model VasaHotel.Models.Review
+@{    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<div class="review-add">
+    <h4>Add Review</h4>
+    <form class="ra-form" asp-action="Create_review">
+        <div class="row">
+            <div class="col-lg-4">
+
+                <label asp-for="Name" class="control-label"></label>
+                <input asp-for="Name" class="form-control" placeholder="Day" />
+                <span asp-validation-for="Name" class="text-danger"></span>
+            </div>
+            <div class="col-lg-4">
+
+                <label asp-for="Day" class="control-label"></label>
+                <input asp-for="Day" class="form-control" placeholder="Day" />
+                <span asp-validation-for="Day" class="text-danger"></span>
+            </div>
+            <div class="col-lg-4">
+                <p>From 1 to 5 (Bad to Good)</p>
+                <label asp-for="Rating" class="control-label"></label>
+
+                <input asp-for="Rating" class="form-control" />
+                <span asp-validation-for="Rating" class="text-danger"></span>
+            </div>
+
+            <div class="col-lg-12">
+
+                <label asp-for="Review_content" class="control-label"></label>
+                <input asp-for="Review_content" class="form-control" type="text" placeholder="Your review" />
+                <span asp-validation-for="Review_content" class="text-danger"></span>
+            </div>
+
+            <select asp-for="RoomID" class="form-control" asp-items="ViewBag.RoomID"></select>
+            <div class="col-lg-12">
+                <div class="form-group">
+
+                    <button type="submit">Submit Now</button>
+                </div>
+            </div>
+        </div>
+    </form>
+</div>

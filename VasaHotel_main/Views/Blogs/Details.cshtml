@@ -2,35 +2,35 @@
 
 @{
     ViewData["Title"] = "Details";
-    Layout = "~/Views/Shared/_Layout.cshtml";
+    Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
 }
 
-<h1>Details</h1>
+<h3>Detail Blog</h3>
 
 <div>
-    <h4>Blog</h4>
+   
     <hr />
     <dl class="row">
         <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.author_name)
+           Author's name: 
         </dt>
         <dd class = "col-sm-10">
             @Html.DisplayFor(model => model.author_name)
         </dd>
         <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.day_published)
+            Published Day: 
         </dt>
         <dd class = "col-sm-10">
             @Html.DisplayFor(model => model.day_published)
         </dd>
         <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.Title)
+           Title: 
         </dt>
         <dd class = "col-sm-10">
             @Html.DisplayFor(model => model.Title)
         </dd>
         <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.Content)
+          Content: 
         </dt>
         <dd class = "col-sm-10">
             @Html.DisplayFor(model => model.Content)
@@ -38,12 +38,13 @@
         <dt class = "col-sm-2">
             @Html.DisplayNameFor(model => model.Images)
         </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.Images)
+        <dd class="col-sm-10">
+            <img src="~/Uploads/Images/@Model.Images" width="250px" height="250px" />
+           
         </dd>
     </dl>
 </div>
 <div>
-    <a asp-action="Edit" asp-route-id="@Model.blog_id">Edit</a> |
-    <a asp-action="Index">Back to List</a>
+    <a asp-action="Edit" asp-route-id="@Model.blog_id" style="background-color: #ef8282ad; padding: 10px; border-radius: 10px; color: white; margin-top: 2px; margin-bottom: 10px; font-size: 14px; font-weight: 600; letter-spacing: 2px;">Edit the blog</a> |
+    <a asp-action="Index" style="background-color: cornflowerblue; padding: 10px; border-radius: 10px; color: white; margin-top: 2px; margin-bottom: 10px; font-size: 14px; font-weight: 600; letter-spacing: 2px;">Back to the Manage Blog page</a>
 </div>

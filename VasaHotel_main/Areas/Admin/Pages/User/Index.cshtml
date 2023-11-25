@@ -1,0 +1,41 @@
+﻿@page "/admin/users"
+@model VasaHotel_main.Areas.Admin.User.IndexModel
+    
+    @{
+        ViewData["title"] = "List of User";
+    }
+    <h3>List of users</h3>
+<p>Total users: @Model.totalUser</p>
+    <partial name="_StatusMessage" model="@Model.StatusMessage" />
+    <form method="POST" class="my-1 d-inline">
+        <button class="btn btn-secondary" asp-page="./Create" asp-page-handler="StartNewRole">
+            Thêm mới Role
+        </button>
+    </form>
+    <a class="btn btn-success btn-sm" asp-page="../User/Index">  Manage User </a>
+    <table class="table">
+        <tr>
+            <th>User Name</th>
+            <th>Role</th>
+            <th>Tác vụ</th>
+        </tr>
+        @foreach (var user in @Model.users)
+        {
+    <tr>
+
+        <td>@user.UserName</td>
+        <td>@user.RoleNames</td>
+        <td></td>
+        <td>
+
+
+            <a asp-route-id="@user.Id" class="btn btn-success btn-sm"
+               asp-page="./AddRole" asp-page-handler="StartUpdate">
+                Add role
+            </a>
+
+
+        </td>
+    </tr>
+        }
+    </table>

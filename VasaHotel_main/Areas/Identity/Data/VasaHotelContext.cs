@@ -24,13 +24,14 @@ namespace VasaHotel_main.Areas.Identity.Data
         public DbSet<Customer> Customer { get; set; }
       
         public DbSet<Room> Room { get; set; }
+        public DbSet<Review> Review { get; set; }
         public DbSet<Typeroom> Type_room { get; set; }
         public DbSet<Service> Service { get; set; }
     
 
         public DbSet<Blog> Blog { get; set; }
 
-        public DbSet<Review> Review { get; set; }
+       
       
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
