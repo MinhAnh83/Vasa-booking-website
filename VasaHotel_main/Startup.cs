@@ -34,6 +34,7 @@ namespace VasaHotel_main
             services.AddDbContext<VasaHotelContext>(options =>
                 options.UseSqlServer(
                     Configuration.GetConnectionString("VasaHotelContextConnection")));
+            //name of database that I connected
             services.AddDatabaseDeveloperPageExceptionFilter();
 
             services.AddDefaultIdentity<VasaHotelUser>(options => options.SignIn.RequireConfirmedAccount = true)
@@ -64,20 +65,16 @@ namespace VasaHotel_main
             }
             app.UseHttpsRedirection();
             app.UseStaticFiles();
-
             app.UseRouting();
-
             app.UseAuthentication();
             app.UseAuthorization();
-         
             app.UseEndpoints(endpoints =>
             {
 
                 endpoints.MapControllerRoute(
                     name: "default",
                     pattern: "{controller=Home}/{action=Index}/{id?}"
-                    
-                    
+     
                     ) ;
                
                 endpoints.MapRazorPages(); 

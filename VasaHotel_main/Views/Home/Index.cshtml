@@ -1,11 +1,12 @@
 ﻿
-
 @model IEnumerable<VasaHotel.Models.Room>
+   <!-- uses a list of Room objects from the VasaHotel.Models namespace -->  
 @{
-    ViewData["Title"] = "Index";
+    ViewData["Title"] = "Home";
+    //value "Home" is assigned to the variable "Title" in ViewData
     Layout = "~/Views/Shared/_Layout.cshtml";
+    //Set the layout for the current view
 }
-
 <div class="container" style="">
     <section class="services-section spad">
         <div class="container">
@@ -106,37 +107,38 @@
 </div>
 <h5 style="text-align: center; padding: 20px; letter-spacing: 5px; font-weight: 800;">ROOMS</h5>
 <div class="container>
-
     <section class="rooms-section spad">
         <div class="container">
-
             <div class="row">
                 @foreach (var item in Model)
+                //Foreach loop is used to iterate through the elements in the Model
+                //list and each element will be assigned to the item variable.
                 {
                     <div class="col-lg-4 col-md-6">
                         <div class="room-item">
-                            
                             <img src="~/Upload/Images/@item.ImageName" width="350px" height="224px" />
-                            <div class="ri-text">
-                                <h4>  @Html.DisplayFor(modelItem => item.Name)</h4>
-
-                                <table>
-                                    <tbody>
-
-                                        <tr>
-                                            <td class="r-o">Status:</td>
-                                            <td> @Html.DisplayFor(modelItem => item.Status)</td>
-                                        </tr>
-                                        <tr>
-                                            <td class="r-o">Type: @Html.DisplayFor(modelItem => item.Typeroom.Name)</td>
-
-                                        </tr>
-
-                                    </tbody>
-                                </table>
-
-                                <a class="primary-btn" asp-action="Detail_room" asp-route-id="@item.room_id">More Details</a>
-                            </div>
+                            @*using the ImageName property of the item object*@
+                        <div class="ri-text">
+                            <h4>  @Html.DisplayFor(modelItem => item.Name)</h4>
+                            @*Display the value of the item's Name attribute*@
+                            <table>
+                                <tbody>
+                                    <tr>
+                                        <td class="r-o">Status:</td>
+                                        <td> @Html.DisplayFor(modelItem => item.Status)</td>
+                                        @*Display the value of the item's Status attribute*@
+                                    </tr>
+                                    <tr>
+                                        <td class="r-o">Type: @Html.DisplayFor(modelItem => item.Typeroom.Name)</td>
+                                        @*Displays the Name attribute value
+                    of the item object's Typeroom attribute*@
+                                    </tr>
+                                </tbody>
+                            </table>
+           <a class="primary-btn" asp-action="Detail_room" asp-route-id="@item.room_id">More Details</a>
+            @*create a link to the Detail_room action in the controller and pass the id parameter
+                   which is the value of the item object's room_id property*@
+                        </div>
                         </div>
                     </div>
                 }

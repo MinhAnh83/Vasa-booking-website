@@ -95,7 +95,11 @@ namespace VasaHotel_main.Areas.Identity.Pages.Account
                         return RedirectToAction("Index", "Rooms");
                         
                     }
-                       
+                    if (roles.Contains("Staff"))
+                    {
+                        return RedirectToAction("Index", "Customers");
+
+                    }
                     return LocalRedirect(returnUrl);
                 }
                 if (result.RequiresTwoFactor)

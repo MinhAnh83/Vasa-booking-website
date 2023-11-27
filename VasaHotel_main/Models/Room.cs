@@ -13,10 +13,7 @@ namespace VasaHotel.Models
         [Key]
         public int room_id { get; set; }
         [Required]
-
-      
-
-        public int TyperoomID { get; set; }
+    public int TyperoomID { get; set; }
         public string Name { get; set; }
         public string Status { get; set; }
         public string ImageName { get; set; }

@@ -13,8 +13,6 @@ namespace VasaHotel.Models
     {
         [Key]
         public int type_room_id { get; set; }
-
-
         public string Name { get; set; }
 
         [Column(TypeName = "decimal(18,2)")]

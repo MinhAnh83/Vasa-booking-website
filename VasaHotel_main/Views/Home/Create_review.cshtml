@@ -17,15 +17,13 @@
                 <input asp-for="Day" class="form-control" placeholder="Day" />
                 <span asp-validation-for="Day" class="text-danger"></span>
             </div>
-            <div class="col-lg-4">
-                <p>From 1 to 5 (Bad to Good)</p>
-                <label asp-for="Rating" class="control-label"></label>
-
+            <div class="col-lg-4">   
+                <label asp-for="Rating" class="control-label"> <p>From 1 to 5 (Bad to Good)</p></label>
                 <input asp-for="Rating" class="form-control" />
                 <span asp-validation-for="Rating" class="text-danger"></span>
             </div>
 
-            <div class="col-lg-12">
+            <div class="col-lg-12" style="visibility: hidden">
 
                 <label asp-for="Review_content" class="control-label"></label>
                 <input asp-for="Review_content" class="form-control" type="text" placeholder="Your review" />
@@ -36,7 +34,7 @@
             <div class="col-lg-12">
                 <div class="form-group">
 
-                    <button type="submit">Submit Now</button>
+                    <button type="submit" style="margin-top:20px">Submit Now</button>
                 </div>
             </div>
         </div>

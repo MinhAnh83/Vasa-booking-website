@@ -8716,11 +8716,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "D:\\BTEC\\APPLICATION ASP.NET\\VasaHotel_main\\VasaHotel_main\\VasaHotel_main.csproj",
+      "projectUniqueName": "C:\\Users\\DELL 15R\\Desktop\\Vasa-booking-website\\VasaHotel_main\\VasaHotel_main.csproj",
       "projectName": "VasaHotel_main",
-      "projectPath": "D:\\BTEC\\APPLICATION ASP.NET\\VasaHotel_main\\VasaHotel_main\\VasaHotel_main.csproj",
+      "projectPath": "C:\\Users\\DELL 15R\\Desktop\\Vasa-booking-website\\VasaHotel_main\\VasaHotel_main.csproj",
       "packagesPath": "C:\\Users\\DELL 15R\\.nuget\\packages\\",
-      "outputPath": "D:\\BTEC\\APPLICATION ASP.NET\\VasaHotel_main\\VasaHotel_main\\obj\\",
+      "outputPath": "C:\\Users\\DELL 15R\\Desktop\\Vasa-booking-website\\VasaHotel_main\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "C:\\Users\\DELL 15R\\AppData\\Roaming\\NuGet\\NuGet.Config",

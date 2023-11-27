@@ -18,34 +18,25 @@ namespace VasaHotel_main.Areas.Identity.Data
             : base(options)
         {
 
-        }
-     
+        }  
         public DbSet<Booking> Booking { get; set; }
         public DbSet<Customer> Customer { get; set; }
-      
         public DbSet<Room> Room { get; set; }
         public DbSet<Review> Review { get; set; }
         public DbSet<Typeroom> Type_room { get; set; }
         public DbSet<Service> Service { get; set; }
-    
-
         public DbSet<Blog> Blog { get; set; }
 
-       
-      
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             modelBuilder.Entity<Typeroom>().ToTable(nameof(Type_room));
             modelBuilder.Entity<Booking>().ToTable(nameof(Booking))
-                   .HasMany(c => c.Service);
-                   
+                   .HasMany(c => c.Service);            
             modelBuilder.Entity<Customer>().ToTable(nameof(Customer))
                  .HasMany(c => c.Booking); ;
-
             modelBuilder.Entity<Room>()
                 .ToTable(nameof(Room))
-                .HasMany(c => c.Review);
-            
+                .HasMany(c => c.Review); 
             modelBuilder.Entity<Service>().ToTable(nameof(Service))  ;
             modelBuilder.Entity<Blog>().ToTable(nameof(Blog));
             modelBuilder.Entity<Review>().ToTable(nameof(Review));

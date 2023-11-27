@@ -11,7 +11,7 @@ using VasaHotel_main.Areas.Identity.Data;
 
 namespace VasaHotel_main.Controllers
 {
-    [Authorize(Roles = "Staff, Admin")]
+    [Authorize(Roles = "Staff")]
     public class CustomersController : Controller
     {
         private readonly VasaHotelContext _context;
