@@ -6,10 +6,10 @@
     Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
 }
 
-<h1>Manage review</h1>
+<h4 style="text-align: center">Manage review</h4>
 
 <p>
-    <a asp-action="Create">Create New</a>
+    <a asp-action="Create" class="button-add">Create New</a>
 </p>
 <table class="table" >
     <thead class="thead-dark">
@@ -24,12 +24,14 @@
                 @Html.DisplayNameFor(model => model.Rating)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.Review_content)
+               Review content
             </th>
             <th>
                 @Html.DisplayNameFor(model => model.Room)
             </th>
-            <th></th>
+            <th>
+                Action
+            </th>
         </tr>
     </thead>
     <tbody>
@@ -39,24 +41,46 @@
                 <td>
                     @Html.DisplayFor(modelItem => item.Name)
                 </td>
-                <td>
+                <td style="font-size: 12px">
                     @Html.DisplayFor(modelItem => item.Day)
                 </td>
                 <td>
                     @Html.DisplayFor(modelItem => item.Rating)
                 </td>
-                <td>
+                <td style="font-size: 12px;word-break:break-word">
                     @Html.DisplayFor(modelItem => item.Review_content)
                 </td>
                 <td>
                     @Html.DisplayFor(modelItem => item.Room.room_id)
                 </td>
                 <td>
-                    <a asp-action="Edit" asp-route-id="@item.review_id" style="background-color: #ef8282ad; padding: 10px; border-radius: 10px; color: white; margin-top: 2px; margin-bottom: 10px; font-size: 14px; font-weight: 600; letter-spacing: 2px;">Edit</a> |
-                    <a asp-action="Details" asp-route-id="@item.review_id" style="background-color: #ef8282ad; padding: 10px; border-radius: 10px; color: white; margin-top: 2px; margin-bottom: 10px; font-size: 14px; font-weight: 600; letter-spacing: 2px;">Details</a> |
-                    <a asp-action="Delete" asp-route-id="@item.review_id" style="background-color: #ef8282ad; padding: 10px; border-radius: 10px; color: white; margin-top: 2px; margin-bottom: 10px; font-size: 14px; font-weight: 600; letter-spacing: 2px;">Delete</a>
+
+                    <a asp-action="Delete" asp-route-id="@item.review_id" style="background-color: red; padding: 10px; border-radius: 10px; color: white; margin-top: 2px; margin-bottom: 10px; font-size: 14px; font-weight: 600; letter-spacing: 2px;">Delete</a>
                 </td>
             </tr>
         }
     </tbody>
 </table>
+<style>
+    .button-add {
+        font-size: 13px;
+        font-weight: 700;
+        text-transform: uppercase;
+        color: white;
+        letter-spacing: 2px;
+        background: #dfa974;
+        border: none;
+        padding: 14px 34px 13px;
+    }
+
+    .button-add1 {
+        font-size: 13px;
+        font-weight: 700;
+        text-transform: uppercase;
+        color: white;
+        letter-spacing: 2px;
+        background: hotpink;
+        border: none;
+        padding: 14px 34px 13px;
+    }
+</style>

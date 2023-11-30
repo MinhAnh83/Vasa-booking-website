@@ -17,7 +17,7 @@
             <div class="ri-text">
                 <span>  @Html.DisplayFor(modelItem => item.Day)</span>
                 <div class="rating">
-                    @Html.DisplayFor(modelItem => item.Rating)
+                  Rating:  @Html.DisplayFor(modelItem => item.Rating)
                 </div>
                 <p>
                     @Html.DisplayFor(modelItem => item.Review_content)
@@ -26,26 +26,19 @@
         </div>
     }
 </div>
-<a asp-action="Create_review" >Create New</a>
 
+<a asp-action="Create_review" class="button-add">Give a review</a>
 
-<table class="table">
-    <thead>
-        <tr>
-            <th>
-                @Html.DisplayNameFor(model => model.Day)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Rating)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Review_content)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Room)
-            </th>
-            <th></th>
-        </tr>
-    </thead>
+<style>
+    .button-add {
+        font-size: 13px;
+        font-weight: 700;
+        text-transform: uppercase;
+        color: #ffffff;
+        letter-spacing: 2px;
+        background: #dfa974;
+        border: none;
+        padding: 14px 34px 13px;
+    }
+</style>
 
-</table>

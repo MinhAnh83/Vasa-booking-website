@@ -14,11 +14,12 @@
         <form asp-action="Create" enctype="multipart/form-data">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
             <div class="form-group">
-                
+                <label class="control-label">Author's name':</label>
+                <input asp-for="author_name" class="form-control" />
                 <span asp-validation-for="author_name" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="day_published" class="control-label"></label>
+                <label class="control-label">Published day:</label>
                 <input asp-for="day_published" class="form-control" />
                 <span asp-validation-for="day_published" class="text-danger"></span>
             </div>
@@ -33,7 +34,7 @@
                 <span asp-validation-for="Content" class="text-danger"></span>
             </div>
             <div class="form-group">
-
+                <h5>Image:</h5>
                 <input type="file" id="uploadhinh1" name="uploadhinh1" accept="image/*" />
 
             </div>
@@ -41,7 +42,7 @@
                 <input type="submit" value="Create" class="btn btn-primary" />
             </div>
             <div>
-                <a asp-action="Index">Back to the Manage Blogs Page</a>
+                <a asp-action="Index" class="button-add">Back to the Blogs Page</a>
             </div>
         </form>
     </div>
@@ -55,3 +56,27 @@
 @section Scripts {
     @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
 }
+
+<style>
+    .button-add {
+        font-size: 13px;
+        font-weight: 700;
+        text-transform: uppercase;
+        color: white;
+        letter-spacing: 2px;
+        background: #dfa974;
+        border: none;
+        padding: 14px 34px 13px;
+    }
+
+    .button-add1 {
+        font-size: 13px;
+        font-weight: 700;
+        text-transform: uppercase;
+        color: white;
+        letter-spacing: 2px;
+        background: hotpink;
+        border: none;
+        padding: 14px 34px 13px;
+    }
+</style>

@@ -5,52 +5,78 @@
     Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
 }
 
-<h1>Edit</h1>
 
-<h4>Customer</h4>
+
+<h4>Edit Customer</h4>
 <hr />
 <div class="row">
-    <div class="col-md-4">
+
+    <div class="col-md-6">
         <form asp-action="Edit">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
             <input type="hidden" asp-for="customer_id" />
             <div class="form-group">
-                <label asp-for="email" class="control-label"></label>
+                <label  class="control-label">Email:</label>
                 <input asp-for="email" class="form-control" />
                 <span asp-validation-for="email" class="text-danger"></span>
             </div>
             
             <div class="form-group">
-                <label asp-for="fullname" class="control-label"></label>
+                <label  class="control-label">Full name:</label>
                 <input asp-for="fullname" class="form-control" />
                 <span asp-validation-for="fullname" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="address" class="control-label"></label>
+                <label  class="control-label">Address: </label>
                 <input asp-for="address" class="form-control" />
                 <span asp-validation-for="address" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="telephone" class="control-label"></label>
+                <label  class="control-label">Telephone:</label>
                 <input asp-for="telephone" class="form-control" />
                 <span asp-validation-for="telephone" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="gender" class="control-label"></label>
+                <label  class="control-label">Gender: </label>
                 <input asp-for="gender" class="form-control" />
                 <span asp-validation-for="gender" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <input type="submit" value="Save" class="btn btn-primary" />
+                <input type="submit" value="Save" class="button-add1" />
             </div>
         </form>
+    </div>
+    <div class="col-md-6">
+        <img src="~/image/gallery/gallery-2.jpg"   height="400px" />
     </div>
 </div>
 
 <div>
-    <a asp-action="Index">Back to List</a>
+    <a asp-action="Index" class="button-add">Back to Manage customers page</a>
 </div>
 
 @section Scripts {
     @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
 }
+<style>
+    .button-add {
+        font-size: 13px;
+        font-weight: 700;
+        text-transform: uppercase;
+        color: white;
+        letter-spacing: 2px;
+        background: #dfa974;
+        border: none;
+        padding: 14px 34px 13px;
+    }
+    .button-add1 {
+        font-size: 13px;
+        font-weight: 700;
+        text-transform: uppercase;
+        color: white;
+        letter-spacing: 2px;
+        background: hotpink;
+        border: none;
+        padding: 14px 34px 13px;
+    }
+</style>

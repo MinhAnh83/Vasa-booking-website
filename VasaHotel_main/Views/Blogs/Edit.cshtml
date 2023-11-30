@@ -43,16 +43,39 @@
                 <input type="submit" style="background-color: paleturquoise; padding: 10px; border-radius: 10px; color: white; margin-top: 2px; margin-bottom: 10px; font-size: 14px; font-weight: 600; letter-spacing: 2px;" value="Save" class="btn btn-primary" />
             </div>
             <div>
-                <a asp-action="Index">Back to Manage Blog Page</a>
+                <a asp-action="Index" class="button-add">Back to Blog Page</a>
             </div>
         </form>
     </div>
     <div class="col-md-8">
-        <img src="~/image/hero/hero-3.jpg" width="700px" height="550px"/>
+        <img src="~/image/hero/hero-3.jpg" width="700px" height="550px" />
     </div>
 
-    
+
 
     @section Scripts {
         @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
     }
+    <style>
+        .button-add {
+            font-size: 13px;
+            font-weight: 700;
+            text-transform: uppercase;
+            color: white;
+            letter-spacing: 2px;
+            background: #dfa974;
+            border: none;
+            padding: 14px 34px 13px;
+        }
+
+        .button-add1 {
+            font-size: 13px;
+            font-weight: 700;
+            text-transform: uppercase;
+            color: white;
+            letter-spacing: 2px;
+            background: hotpink;
+            border: none;
+            padding: 14px 34px 13px;
+        }
+    </style>

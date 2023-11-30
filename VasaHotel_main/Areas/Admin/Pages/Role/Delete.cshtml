@@ -2,7 +2,7 @@
 @model VasaHotel_main.Areas.Admin.Role.DeleteModel
 
 @{
-    ViewData["title"] = "Edit role";
+    ViewData["title"] = "Delete role";
 }
 <h4>@ViewData["Title"]</h4>
 <partial name="_StatusMessage" model="@Model.StatusMessage" />
@@ -18,7 +18,7 @@
                 Delete
             </button>
 
-            <a class="btn btn-primary" asp-page="./Index">Danh sách</a>
+            <a class="btn btn-primary" asp-page="./Index">Go to the List of roles</a>
         </form>
     </div>
 </div>

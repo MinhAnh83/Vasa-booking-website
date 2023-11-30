@@ -14,22 +14,24 @@ using VasaHotel_main.Models;
 
 namespace VasaHotel_main.Controllers
 {
-  
- //  [Authorize(Roles = "Administrator, Staff, Customer")]
+    [Authorize]
+    //  [Authorize(Roles = "Administrator, Staff, Customer")]
     public class HomeController : Controller
     {
         private readonly ILogger<HomeController> _logger;
         private readonly VasaHotelContext _context;
         public IList<Room> Rooms { get; set; }
 
+      
         public HomeController(ILogger<HomeController> logger, VasaHotelContext context)
         {
             _logger = logger;
            _context = context;
         }
 
-      
+
         // GET: Home
+        [AllowAnonymous]
         public async Task<IActionResult> Index()
         {
             var vasaHotelContext = _context.Room.Include(r => r.Typeroom).ToList();
@@ -42,6 +44,7 @@ namespace VasaHotel_main.Controllers
         static int bookingid { get; set; }
 
         // GET: Home/Detail_room/
+        [AllowAnonymous]
         public async Task<IActionResult> Detail_room(int? id)
         {
             if (id == null)
@@ -63,13 +66,14 @@ namespace VasaHotel_main.Controllers
 
             return View(room);
         }
-
+        [AllowAnonymous]
         public IActionResult Contact()
         {
             return View();
         }
 
         // GET: Blog
+        [AllowAnonymous]
         public async Task<IActionResult> Blog()
 
         {
@@ -78,6 +82,7 @@ namespace VasaHotel_main.Controllers
 
 
         // GET: Blogs/Detail_blog/5
+        [AllowAnonymous]
         public async Task<IActionResult> Detail_blog(int? id)
         {
             if (id == null)
@@ -94,20 +99,26 @@ namespace VasaHotel_main.Controllers
 
             return View(blog);
         }
+        static int reviewid { get; set; }
+        [AllowAnonymous]
         // GET: Home/Review_page
-        public async Task<IActionResult> Review_page(int? id)
+        public async Task<IActionResult> Review_page(int id)
 
         {
+            reviewid = id;
             var vasaHotelContext1 = _context.Review.Where(m => m.RoomID == id);
-            ViewData["RoomID"] = id;
+         
+            // var vasaHotelContext1 = _context.Review.FindAsync(m => m.RoomID == id);
             return View(await vasaHotelContext1.ToListAsync());
 
         }
-       
+
         // GET: Home/Create_review
+      
         public IActionResult Create_review(int? id)
         {
             ViewData["RoomID"] = new SelectList(_context.Room, "room_id", id.ToString());
+            ViewBag.Day = DateTime.Now;
             return View();
         }
 
@@ -120,29 +131,42 @@ namespace VasaHotel_main.Controllers
         {
             if (ModelState.IsValid)
             {
+                review = new Review
+                {
+                    Name = review.Name,
+                    Day = DateTime.Now,
+                    Rating = review.Rating,
+                    Review_content = review.Review_content,
+                    RoomID = reviewid,
+                   
+                };
+                ViewBag.Day = review.Day;
                 _context.Add(review);
                 await _context.SaveChangesAsync();
-                return RedirectToAction(nameof(Index));
+                return RedirectToAction("Review_page", new { id = review.RoomID });
+               
             }
-            ViewData["RoomID"] = new SelectList(_context.Room, "room_id", id.ToString());
+           
             return View(review);
         }
 
-        
- 
 
+
+        [AllowAnonymous]
         public IActionResult Privacy()
         {
             return View();
         }
 
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
+        [AllowAnonymous]
         public IActionResult Error()
         {
             return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
         }
 
         // GET: Customers/Create_customer
+
         public IActionResult Create_customer(int? id)
         {
             return View();
@@ -150,12 +174,13 @@ namespace VasaHotel_main.Controllers
         // POST: Customers/Create
         // To protect from overposting attacks, enable the specific properties you want to bind to.
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
+       
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Create_customer([Bind("customer_id,email,password,fullname,address,telephone,gender")] Customer customer)
         {
             if (ModelState.IsValid)
-            {
+            { 
                 
                 _context.Add(customer);
                 await _context.SaveChangesAsync();
@@ -191,7 +216,7 @@ namespace VasaHotel_main.Controllers
                 booking = new Booking
                 { checkout_day = booking.checkout_day,
                     checkin_day = booking.checkin_day,
-                    method_payment = booking.method_payment,
+                    method_payment = "cash",
                     is_payment = false,
                     RoomID = int.Parse(roomId),
                     CustomerID = int.Parse(Customerid),

@@ -6,10 +6,10 @@
     Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
 }
 
-<h3>Manage Blog</h3>
+<h3 style="text-align: center">Manage Blog</h3>
 
 <p>
-    <a asp-action="Create">Create New</a>
+    <a asp-action="Create" class="button-add">Create New</a>
 </p>
 <table class="table">
     <thead class="thead-dark">
@@ -21,11 +21,11 @@
                 Published Day
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.Title)
+              Title of Blog:
             </th>
             
             <th>
-                @Html.DisplayNameFor(model => model.Images)
+               Image:
             </th>
             <th>
                 Actions
@@ -39,10 +39,10 @@
                 <td>
                     @Html.DisplayFor(modelItem => item.author_name)
                 </td>
-                <td>
+                <td style="font-size:12px">
                     @Html.DisplayFor(modelItem => item.day_published)
                 </td>
-                <td>
+                <td  style="font-size:12px">
                     @Html.DisplayFor(modelItem => item.Title)
                 </td>
                 
@@ -51,10 +51,33 @@
                 </td>
                 <td>
                     <a asp-action="Edit" asp-route-id="@item.blog_id"style="background-color: #ef8282ad; padding: 10px; border-radius: 10px; color: white; margin-top: 2px; margin-bottom: 10px; font-size: 14px; font-weight: 600; letter-spacing: 2px;">Edit</a> |
-                    <a asp-action="Details" asp-route-id="@item.blog_id" style="background-color: #ef8282ad; padding: 10px; border-radius: 10px; color: white; margin-top: 2px; margin-bottom: 10px; font-size: 14px; font-weight: 600; letter-spacing: 2px;">Details</a> |
-                    <a asp-action="Delete" asp-route-id="@item.blog_id" style="background-color: #ef8282ad; padding: 10px; border-radius: 10px; color: white; margin-top: 2px; margin-bottom: 10px; font-size: 14px; font-weight: 600; letter-spacing: 2px;">Delete</a>
+                    <a asp-action="Details" asp-route-id="@item.blog_id" style="background-color: cornflowerblue; padding: 10px; border-radius: 10px; color: white; margin-top: 2px; margin-bottom: 10px; font-size: 14px; font-weight: 600; letter-spacing: 2px;">Details</a> |
+                    <a asp-action="Delete" asp-route-id="@item.blog_id" style="background-color: red; padding: 10px; border-radius: 10px; color: white; margin-top: 2px; margin-bottom: 10px; font-size: 14px; font-weight: 600; letter-spacing: 2px;">Delete</a>
                 </td>
             </tr>
         }
     </tbody>
 </table>
+<style>
+    .button-add {
+        font-size: 13px;
+        font-weight: 700;
+        text-transform: uppercase;
+        color: white;
+        letter-spacing: 2px;
+        background: #dfa974;
+        border: none;
+        padding: 14px 34px 13px;
+    }
+
+    .button-add1 {
+        font-size: 13px;
+        font-weight: 700;
+        text-transform: uppercase;
+        color: white;
+        letter-spacing: 2px;
+        background: hotpink;
+        border: none;
+        padding: 14px 34px 13px;
+    }
+</style>

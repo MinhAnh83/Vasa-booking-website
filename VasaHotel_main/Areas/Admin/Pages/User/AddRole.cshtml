@@ -12,14 +12,14 @@
 
 <partial name="_StatusMessage" model="@Model.StatusMessage" />
 
-<a class="btn btn-success btn-sm" asp-page="../User/Index">  Manage User </a>
+@*<a class="btn btn-success btn-sm" asp-page="../User/Index">  Manage User </a>*@
 <div class="row">
     <div class="col-md-6">
         <form method="post">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
 
             <div class="form-group">
-                <label asp-for="RoleNames"></label>
+                @*<label asp-for="RoleNames"></label>*@
                 @Html.ListBoxFor(m => m.RoleNames, Model.allRoles, new
            {
                id="id-select-roles",

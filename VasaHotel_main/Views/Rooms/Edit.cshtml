@@ -5,18 +5,17 @@
    Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
 }
 
-<h1>Edit</h1>
 
-<h4>Room</h4>
+<h4 style="color: #dfa974;font-weight: 700;text-align: center">Edit the Room</h4>
 <hr />
 <div class="row">
-    <div class="col-md-4">
+    <div class="col-md-6">
         <form asp-action="Edit" enctype="multipart/form-data">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
             <input type="hidden" asp-for="room_id" />
             <div class="form-group">
-                <label asp-for="TyperoomID" class="control-label"></label>
-                <select asp-for="TyperoomID" class="form-control" asp-items="ViewBag.TyperoomID"></select>
+                <label  class="control-label" style="width: 100%">Typeroom</label>
+                <select asp-for="TyperoomID" class="form-control" asp-items="ViewBag.TyperoomID" style="width: 208px;"></select>
                 <span asp-validation-for="TyperoomID" class="text-danger"></span>
             </div>
             <div class="form-group">
@@ -30,23 +29,41 @@
                 <span asp-validation-for="Status" class="text-danger"></span>
             </div>
             <div class="form-group">
-
+                <h5>Image:</h5> 
                 <input type="file" id="uploadhinh" name="uploadhinh" accept="image/*" />
 
             </div>
             <div class="form-group">
                 <label asp-for="Description" class="control-label"></label>
-                <input asp-for="Description" class="form-control" />
+                <textarea asp-for="Description" class="form-control" > </textarea>
                 <span asp-validation-for="Description" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <input type="submit" value="Save" class="btn btn-primary" />
+                <input type="submit" value="Update" class="btn btn-primary" />
             </div>
         </form>
+    </div>
+    <div class="col-md-6">
+        <img src="~/image/hero/hero-1.jpg" height="400px" />
     </div>
 </div>
 
 <div>
-    <a asp-action="Index">Back to List</a>
+    <a asp-action="Index" class="button-goback">Back to List</a>
 </div>
 
+<style>
+    li.option.selected.focus {
+        width: 208px;
+    }
+    .button-goback {
+        font-size: 13px;
+        font-weight: 700;
+        text-transform: uppercase;
+        color: deepskyblue;
+        letter-spacing: 2px;
+        background: #dfa974;
+        border: none;
+        padding: 14px 34px 13px;
+    }
+</style>

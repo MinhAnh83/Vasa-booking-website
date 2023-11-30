@@ -5,11 +5,13 @@
     Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
 }
 
-<h1>Details</h1>
 
 <div>
-    <h4>Room</h4>
+    <h4 style="text-align: center">Detail room</h4>
     <hr />
+    <div style="text-align:center">
+        <img src="~/Upload/Images/@Model.ImageName" width="300px" height="300px"style="border-radius: 5px"/>
+    </div>
     <dl class="row">
         <dt class = "col-sm-2">
             @Html.DisplayNameFor(model => model.Name)
@@ -23,12 +25,7 @@
         <dd class = "col-sm-10">
             @Html.DisplayFor(model => model.Status)
         </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.ImageName)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.ImageName)
-        </dd>
+       
         <dt class = "col-sm-2">
             @Html.DisplayNameFor(model => model.Description)
         </dt>
@@ -39,11 +36,33 @@
             @Html.DisplayNameFor(model => model.Typeroom)
         </dt>
         <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.Typeroom.type_room_id)
+            @Html.DisplayFor(model => model.Typeroom.Name)
         </dd>
     </dl>
 </div>
 <div>
-    <a asp-action="Edit" asp-route-id="@Model.room_id">Edit</a> |
-    <a asp-action="Index">Back to List</a>
+    <a asp-action="Edit" asp-route-id="@Model.room_id"  class="button-edit" >Edit the room</a> |
+    <a asp-action="Index" class="button-goback">Back to Manage room page</a>
 </div>
+<style>
+    .button-edit {
+        font-size: 13px;
+        font-weight: 700;
+        text-transform: uppercase;
+        color: #ffffff;
+        letter-spacing: 2px;
+        background: #dfa974;
+        border: none;
+        padding: 14px 34px 13px;
+    }
+    .button-goback {
+        font-size: 13px;
+        font-weight: 700;
+        text-transform: uppercase;
+        color: white;
+        letter-spacing: 2px;
+        background: #dfa974;
+        border: none;
+        padding: 14px 34px 13px;
+    }
+</style>

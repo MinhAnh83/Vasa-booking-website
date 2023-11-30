@@ -4,19 +4,19 @@
 @{
     ViewData["title"] = "Danh sac cac role";
 }
-<h3>Danh sách các role</h3>
+<h3>List of roles </h3>
     <partial name="_StatusMessage" model="@Model.StatusMessage" />
     <form method="POST" class="my-1 d-inline">
         <button class="btn btn-secondary" asp-page="./Create" asp-page-handler="StartNewRole">
-            Thêm mới Role
+           Add Role
         </button>
         </form>
-    <a  class="btn btn-success btn-sm" asp-page="../User/Index" >  Manage User </a>
+    @*<a  class="btn btn-success btn-sm" asp-page="../User/Index" >  Manage User </a>*@
         <table class="table">
             <tr>
                 <th>Role ID</th>
-                <th>Tên</th>
-                <th>Tác vụ</th>
+                <th>Name</th>
+                <th>Action</th>
             </tr>
             @foreach (var role in @Model.roles)
             {
@@ -29,7 +29,7 @@
                                     asp-page="./Edit" asp-page-handler="StartUpdate">
                                 Edit Role
                             </a>
-                        <a  asp-route-roleid="@role.Id" class="btn btn-success btn-sm"
+                        <a  asp-route-roleid="@role.Id" class="btn btn-danger btn-sm"
                                     asp-page="./Delete" asp-page-handler="StartUpdate">
                                 Delete
                             </a>

@@ -63,7 +63,7 @@ namespace VasaHotel_main.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("room_id,TyperoomID,Name,Status,ImageName,Description")] Room room, List<IFormFile>  uploadhinh)
+        public async Task<IActionResult> Create([Bind("room_id,TyperoomID,Name,Status,ImageName,Description")] Room room, IFormFile  uploadhinh)
         {
             _context.Add(room);
             await _context.SaveChangesAsync();
@@ -81,18 +81,17 @@ namespace VasaHotel_main.Controllers
                 }
                
 
-            if (uploadhinh !=null && uploadhinh.Count > 0)
+            if (uploadhinh !=null && uploadhinh.Length > 0)
             {
                     string _Filename = "";
-                    foreach (var file in uploadhinh)
-                {
-                    int index = file.FileName.IndexOf('.');
-                    _Filename = "room" + id.ToString() + "." + file.FileName.Substring(index + 1);
+                 
+                    int index = uploadhinh.FileName.IndexOf('.');
+                    _Filename = "room" + id.ToString() + "." + uploadhinh.FileName.Substring(index + 1);
                     string path = Path.Combine(_hostEnvironment.WebRootPath, "Upload/Images", _Filename);
 
                     using (var stream = new FileStream(path, FileMode.Create))
                     {
-                        await file.CopyToAsync(stream);
+                        await uploadhinh.CopyToAsync(stream);
                     }
                     Room unv = _context.Room.FirstOrDefault(x => x.room_id == id);
                         if (unv != null)
@@ -102,7 +101,7 @@ namespace VasaHotel_main.Controllers
                         }
                         await _context.SaveChangesAsync();
 
-                    }
+                   
             }
 
                 
@@ -134,7 +133,7 @@ namespace VasaHotel_main.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("room_id,TyperoomID,Name,Status,ImageName,Description")] Room room, List<IFormFile> uploadhinh)
+        public async Task<IActionResult> Edit(int id, [Bind("room_id,TyperoomID,Name,Status,ImageName,Description")] Room room, IFormFile uploadhinh)
         {
             if (id != room.room_id)
             {
@@ -145,33 +144,35 @@ namespace VasaHotel_main.Controllers
             {
                 try
                 {
-                    _context.Update(room);
-                    await _context.SaveChangesAsync();
-                   
-                    if (uploadhinh != null && uploadhinh.Count > 0)
+                    if (uploadhinh != null && uploadhinh.Length > 0)
                     {
+                        int room_id = room.room_id;
+                        id = room_id;
                         string _Filename = "";
-                        foreach (var file in uploadhinh)
-                        {
-                            int index = file.FileName.IndexOf('.');
-                            _Filename = "room" + id.ToString() + "." + file.FileName.Substring(index + 1);
-                            string path = Path.Combine(_hostEnvironment.WebRootPath, "Upload/Images", _Filename);
 
+                            int index = uploadhinh.FileName.IndexOf('.');
+                            _Filename = "room" + id.ToString() + "." + uploadhinh.FileName.Substring(index + 1);
+                            string path = Path.Combine(_hostEnvironment.WebRootPath, "Upload/Images", _Filename);
                             using (var stream = new FileStream(path, FileMode.Create))
                             {
-                                await file.CopyToAsync(stream);
+                                await uploadhinh.CopyToAsync(stream);
                             }
-                            Room unv = _context.Room.FirstOrDefault(x => x.room_id == id);
-                            if (unv != null)
-                            {
-                                unv.ImageName = _Filename;
+                            room.ImageName = _Filename;
+                        await _context.SaveChangesAsync();
 
-                            }
-                            await _context.SaveChangesAsync();
-
-                        }
+                    }
+                    else
+                    {
+                        // Retrieve existing image name from the database
+                        var existingRoom = await _context.Room.FindAsync(id);
+                        _context.Entry(existingRoom).State = EntityState.Detached; // Detach the existing entity
+                        room.ImageName = existingRoom.ImageName;
                     }
 
+                    _context.Update(room);
+                    await _context.SaveChangesAsync();
+
+                    return RedirectToAction(nameof(Index));
                 }
                 catch (DbUpdateConcurrencyException)
                 {
@@ -184,10 +185,8 @@ namespace VasaHotel_main.Controllers
                         throw;
                     }
                 }
-
-
-                return RedirectToAction(nameof(Index));
             }
+
             ViewData["TyperoomID"] = new SelectList(_context.Type_room, "type_room_id", "Name", room.TyperoomID);
             return View(room);
         }

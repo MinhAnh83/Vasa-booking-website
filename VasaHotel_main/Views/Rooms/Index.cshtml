@@ -5,10 +5,10 @@
     Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
 }
 
-<h1>Index</h1>
+<h3 style="text-align: center">Manage room</h3>
 
-<p>
-    <a asp-action="Create">Create New</a>
+<p style="margin-top: 25px">
+    <a asp-action="Create" class="button-add">Create New</a>
 </p>
 <table class="table">
     <thead>
@@ -50,10 +50,22 @@
             </td>
             <td>
                 <a asp-action="Edit" asp-route-id="@item.room_id" style="background-color: #ef8282ad; padding: 10px; border-radius: 10px; color: white; margin-top: 2px; margin-bottom: 10px; font-size: 14px; font-weight: 600; letter-spacing: 2px;">Edit</a> |
-                <a asp-action="Details" asp-route-id="@item.room_id" style="background-color: #ef8282ad; padding: 10px; border-radius: 10px; color: white; margin-top: 2px; margin-bottom: 10px; font-size: 14px; font-weight: 600; letter-spacing: 2px;">Details</a> |
-                <a asp-action="Delete" asp-route-id="@item.room_id" style="background-color: #ef8282ad; padding: 10px; border-radius: 10px; color: white; margin-top: 2px; margin-bottom: 10px; font-size: 14px; font-weight: 600; letter-spacing: 2px;">Delete</a>
+                <a asp-action="Details" asp-route-id="@item.room_id" style="background-color: deepskyblue; padding: 10px; border-radius: 10px; color: white; margin-top: 2px; margin-bottom: 10px; font-size: 14px; font-weight: 600; letter-spacing: 2px;">Details</a> |
+                <a asp-action="Delete" asp-route-id="@item.room_id" style="background-color: red; padding: 10px; border-radius: 10px; color: white; margin-top: 2px; margin-bottom: 10px; font-size: 14px; font-weight: 600; letter-spacing: 2px;">Delete</a>
             </td>
         </tr>
 }
     </tbody>
 </table>
+<style>
+    .button-add {
+        font-size: 13px;
+        font-weight: 700;
+        text-transform: uppercase;
+        color: #ffffff;
+        letter-spacing: 2px;
+        background: #dfa974;
+        border: none;
+        padding: 14px 34px 13px;
+    }
+</style>

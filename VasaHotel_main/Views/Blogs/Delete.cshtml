@@ -5,15 +5,15 @@
     Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
 }
 
-<h2>Delete the blog </h2>
+<h3>Delete the blog </h3>
 
-<h3 style="color: red">Are you sure you want to delete the Blog <span>  @Html.DisplayFor(model => model.Title)</span> of <span>@Html.DisplayFor(model => model.author_name)</span>?</h3>
+<h4 style="color: red">Are you sure you want to delete the Blog <span>  @Html.DisplayFor(model => model.Title)</span> of <span>@Html.DisplayFor(model => model.author_name)</span>?</h4>
 <div>
   
     
-    <form asp-action="Delete">
+    <form asp-action="Delete" style="margin-top: 30px">
         <input type="hidden" asp-for="blog_id" />
         <input type="submit" value="Yes, I Delete" class="btn btn-danger" /> |
-        <a asp-action="Index" style="background-color: deepskyblue; color: white">Cancel</a>
+        <a asp-action="Index" style="background-color: deepskyblue; color: white; padding: 10px; border-radius: 5px">Cancel</a>
     </form>
 </div>
