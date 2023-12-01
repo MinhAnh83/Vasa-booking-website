@@ -145,9 +145,9 @@ namespace VasaHotel_main.Controllers
                         int blog_id = blog.blog_id;
                         id = blog_id;
                         string _Filename = "";
-
+                        blog.Images = "";
                         int index = uploadhinh1.FileName.IndexOf('.');
-                        _Filename = "blog" + id.ToString() + "." + uploadhinh1.FileName.Substring(index + 1);
+                        _Filename = "blogs" + id.ToString() + "." + uploadhinh1.FileName.Substring(index + 1);
                         string path = Path.Combine(_hostEnvironment.WebRootPath, "Uploads/Images", _Filename);
                         using (var stream = new FileStream(path, FileMode.Create))
                         {

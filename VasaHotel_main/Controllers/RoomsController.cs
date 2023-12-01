@@ -149,9 +149,9 @@ namespace VasaHotel_main.Controllers
                         int room_id = room.room_id;
                         id = room_id;
                         string _Filename = "";
-
-                            int index = uploadhinh.FileName.IndexOf('.');
-                            _Filename = "room" + id.ToString() + "." + uploadhinh.FileName.Substring(index + 1);
+                        room.ImageName = "";
+                        int index = uploadhinh.FileName.IndexOf('.');
+                            _Filename = "rooms" + id.ToString() + "." + uploadhinh.FileName.Substring(index + 1);
                             string path = Path.Combine(_hostEnvironment.WebRootPath, "Upload/Images", _Filename);
                             using (var stream = new FileStream(path, FileMode.Create))
                             {
