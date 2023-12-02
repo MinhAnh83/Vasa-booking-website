@@ -22,9 +22,7 @@
             <th>
                 @Html.DisplayNameFor(model => model.ImageName)
             </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Description)
-            </th>
+          
             <th>
                 @Html.DisplayNameFor(model => model.Typeroom)
             </th>
@@ -42,9 +40,7 @@
             </td>
             <td>  <img src="~/Upload/Images/@item.ImageName"  width="250px" height="250px" />
             </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Description)
-            </td>
+          
             <td>
                 @Html.DisplayFor(modelItem => item.Typeroom.type_room_id)
             </td>

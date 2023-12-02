@@ -1,44 +1,48 @@
 ﻿@model IEnumerable<VasaHotel.Models.Review>
+    @*//a list of reviews (`Review`) represented by type `IEnumerable`*@
 
-@{
-    ViewData["Title"] = "Review page";
-    Layout = "~/Views/Shared/_Layout.cshtml";
-}
+    @{
+        ViewData["Title"] = "Review page";
+        Layout = "~/Views/Shared/_Layout.cshtml";
+        //layout được sử dụng là "_Layout.cshtml".
+    }
 
-<div class="rd-reviews">
-    <h4>Evaluation</h4>
-    @foreach (var item in Model)
-    {
-        <div class="review-item">
-            <div class="ri-pic">
-                <img src="~/image/room/avatar/avatar-2.jpg" alt="">
-            </div>
-            <h5> @Html.DisplayFor(modelItem => item.Name)</h5>
-            <div class="ri-text">
-                <span>  @Html.DisplayFor(modelItem => item.Day)</span>
-                <div class="rating">
-                  Rating:  @Html.DisplayFor(modelItem => item.Rating)
-                </div>
-                <p>
-                    @Html.DisplayFor(modelItem => item.Review_content)
-                </p>
-            </div>
+    <div class="rd-reviews">
+        <h4>Evaluation</h4>
+        @foreach (var item in Model) @*sử dụng vòng lặp `foreach` để lặp qua từng đối tượng trong danh sách `Model`*@
+        {
+    <div class="review-item">
+        <div class="ri-pic">
+            <img src="~/image/room/avatar/avatar-2.jpg" alt="">
         </div>
-    }
-</div>
+        <h5> @Html.DisplayFor(modelItem => item.Name)</h5>
+        @*The value of the `Name` property of the `item` object is displayed using the Razor syntax's `DisplayFor` helper*@
+    <div class="ri-text">
+        <span>  @Html.DisplayFor(modelItem => item.Day)</span>
+        @*The value of the `Day` property of the `item` object*@
+        <div class="rating">
+            Rating:  @Html.DisplayFor(modelItem => item.Rating)
+        </div>
+        <p>
+            @Html.DisplayFor(modelItem => item.Review_content)
+        </p>
+    </div>
+    </div>
+        }
+    </div>
 
-<a asp-action="Create_review" class="button-add">Give a review</a>
+    <a asp-action="Create_review" class="button-add">Give a review</a>
 
-<style>
-    .button-add {
-        font-size: 13px;
-        font-weight: 700;
-        text-transform: uppercase;
-        color: #ffffff;
-        letter-spacing: 2px;
-        background: #dfa974;
-        border: none;
-        padding: 14px 34px 13px;
-    }
-</style>
+    <style>
+        .button-add {
+            font-size: 13px;
+            font-weight: 700;
+            text-transform: uppercase;
+            color: #ffffff;
+            letter-spacing: 2px;
+            background: #dfa974;
+            border: none;
+            padding: 14px 34px 13px;
+        }
+    </style>
 

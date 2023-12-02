@@ -3,7 +3,8 @@
 *@
 @{
 }
-@model IEnumerable<VasaHotel.Models.Blog>
+@model IEnumerable<VasaHotel.Models.Blog> 
+@*//declares the model for the view, indicating that this view will receive a list of Blog objects*@
 <div class="breadcrumb-section">
     <div class="container">
         <div class="row">
@@ -23,25 +24,31 @@
     <div class="container">
         <div class="row">
             <tbody>
-                @foreach (var item in Model)
+                @foreach (var item in Model) //Go through each element in the Mode list
                 {
                     <div class="col-lg-4 col-md-6">
                         <div class="blog-item set-bg" data-setbg="@Url.Content("~/Uploads/Images/"+ item.Images)">
-                           
+                            @*The `data-setbg` property is used to set the background image of the div 
+                            is passed the value of the path to the Blog object's image*@
+
                             <div class="bi-text">
 
                                 <h4><a href="./blog-details.html">  @Html.DisplayFor(modelItem => item.Title)</a></h4>
-                                <div class="b-time"><i class="icon_clock_alt"></i>  @Html.DisplayFor(modelItem => item.day_published)</div>
+                                @*displays the title of the Blog object*@
+                                <div class="b-time"><i class="icon_clock_alt"></i>@Html.DisplayFor(modelItem => item.day_published)</div>
+                                @*Displays the blog object's posting date*@
                                 <a asp-action="Detail_blog" asp-route-id="@item.blog_id">View more</a> |
+                                @*`asp-action` specifies the name of the 'Detail_blog' action method in the Homecontroller
+                    `asp-route-id` attribute specifies the value of the id parameter passed to the 'detail_blog' action method*@
                             </div>
                         </div>
                     </div>
                 }
-                    <div class="col-lg-12">
-                        <div class="load-more">
-                            <a href="#" class="primary-btn">Load More</a>
-                        </div>
+                <div class="col-lg-12">
+                    <div class="load-more">
+                        <a href="#" class="primary-btn">Load More</a>
                     </div>
-            </div>
+                </div>
+        </div>
     </div>
 </section>

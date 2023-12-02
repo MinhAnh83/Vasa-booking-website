@@ -95,7 +95,6 @@ namespace VasaHotel_main.Areas.Identity.Pages.Account
                 
                 if (result.Succeeded)
                 {
-                    await _userManager.AddToRoleAsync(user, Roles.Staff.ToString());
                     await _userManager.AddToRoleAsync(user, Roles.Customer.ToString());
                     _logger.LogInformation("User created a new account with password.");
                     var userId = await _userManager.GetUserIdAsync(user);

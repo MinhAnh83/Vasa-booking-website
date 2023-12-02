@@ -54,7 +54,7 @@ namespace VasaHotel_main.Controllers
         // GET: Rooms/Create
         public IActionResult Create()
         {
-            ViewData["TyperoomID"] = new SelectList(_context.Type_room, "type_room_id", "type_room_id");
+            ViewData["TyperoomID"] = new SelectList(_context.Type_room, "type_room_id", "Name");
             return View();
         }
 
@@ -107,7 +107,7 @@ namespace VasaHotel_main.Controllers
                 
                 return RedirectToAction(nameof(Index));
             }
-            ViewData["TyperoomID"] = new SelectList(_context.Type_room, "type_room_id", "type_room_id", room.TyperoomID);
+            ViewData["TyperoomID"] = new SelectList(_context.Type_room, "type_room_id", "Name", room.TyperoomID);
             return View(room);
         }
 
