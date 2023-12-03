@@ -1,21 +1,26 @@
 ﻿@model VasaHotel.Models.Review
 @{    Layout = "~/Views/Shared/_Layout.cshtml";
-    var data = ViewBag.Day;
+    var data = ViewBag.Day; //Get data from ViewBag.Day and save it to the 'data' variable
+
 }
 <div class="review-add">
     <h4>Add Review</h4>
     <form class="ra-form" asp-action="Create_review">
+        @*//Specify the Create_review action that the form will send data to when submit is performed*@
         <div class="row">
             <div class="col-lg-4">
-
                 <label asp-for="Name" class="control-label"></label>
                 <input asp-for="Name" class="form-control" placeholder="Day" />
+                @*Link the 'Name' data field in the Review model to the input on the form*@
                 <span asp-validation-for="Name" class="text-danger"></span>
+                @*Display an error message if an error occurs with the 'Name' data field*@
             </div>
             <div class="col-lg-4">
                 <label asp-for="Rating" class="control-label"> From 1 to 5 (Bad to Good)</label>
                 <input asp-for="Rating" class="form-control" />
-                <span asp-validation-for="Rating" class="text-danger"></span>
+                @*Link the 'Rating' data field in the Review model to the input on the form*@
+                <span asp-validation-for="Rating" class="text-danger"></span> 
+                @*Display an error message if an error occurs with the Rating data field*@
             </div>
 
             <div class="col-lg-12">
@@ -25,17 +30,14 @@
                 <span asp-validation-for="Review_content" class="text-danger"></span>
             </div>
             <div class="col-lg-12">
-                <h5> Review day: @data</h5>  
+                <h5> Review day: @data</h5> @*Display the value of the 'data' variable taken from ViewBag.Day*@
             </div>
-
-
-                @*//  <select asp-for="RoomID" class="form-control" asp-items="ViewBag.RoomID" style="visibility: hidden"></select>*@
-                <div class="col-lg-12">
-                    <div class="form-group">
-
-                        <button type="submit" style="margin-top:20px">Submit Now</button>
-                    </div>
+            <div class="col-lg-12">
+                <div class="form-group">
+                    <button type="submit" style="margin-top:20px">Submit Now</button>
+                    @*Send form data to the server when the button is pressed*@
                 </div>
             </div>
-</form>
+        </div>
+    </form>
 </div>

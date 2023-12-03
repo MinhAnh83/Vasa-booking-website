@@ -1,41 +1,39 @@
-﻿@page "/admin/roles"
+﻿@page "/admin/roles" @*//a Razor page is located at "/admin/roles"*@
 @model VasaHotel_main.Areas.Admin.Role.IndexModel
-
+@*The data model is IndexModel in the namespace VasaHotel_main.Areas.Admin.Role*@
 @{
-    ViewData["title"] = "Danh sac cac role";
+    ViewData["title"] = "List of roles";
 }
 <h3>List of roles </h3>
-    <partial name="_StatusMessage" model="@Model.StatusMessage" />
-    <form method="POST" class="my-1 d-inline">
-        <button class="btn btn-secondary" asp-page="./Create" asp-page-handler="StartNewRole">
-           Add Role
-        </button>
-        </form>
-    @*<a  class="btn btn-success btn-sm" asp-page="../User/Index" >  Manage User </a>*@
-        <table class="table">
-            <tr>
-                <th>Role ID</th>
-                <th>Name</th>
-                <th>Action</th>
-            </tr>
-            @foreach (var role in @Model.roles)
-            {
-                <tr>
-                    <td>@role.Id</td>
-                    <td>@role.Name</td>
-                    <td>
-                       
-                            <a  asp-route-roleid="@role.Id" class="btn btn-success btn-sm"
-                                    asp-page="./Edit" asp-page-handler="StartUpdate">
-                                Edit Role
-                            </a>
-                        <a  asp-route-roleid="@role.Id" class="btn btn-danger btn-sm"
-                                    asp-page="./Delete" asp-page-handler="StartUpdate">
-                                Delete
-                            </a>
-                        
-                        
-                    </td>
-                </tr>
-            }
-        </table>
+<partial name="_StatusMessage" model="@Model.StatusMessage" />
+@*a "_StatusMessage" partial element to display status messages*@
+<form method="POST" class="my-1 d-inline">
+    @*POST form to add new roles*@
+    <button class="btn btn-secondary" asp-page="./Create" asp-page-handler="StartNewRole">
+        Add Role
+    </button>
+</form>
+<table class="table">
+    <tr>
+        <th>Role ID</th>
+        <th>Name</th>
+        <th>Action</th>
+    </tr>
+    @foreach (var role in @Model.roles) @*display a list of existing roles in the system*@
+    {
+        <tr>
+            <td>@role.Id</td>
+            <td>@role.Name</td>
+            <td>
+                <a asp-route-roleid="@role.Id" class="btn btn-success btn-sm"
+                   asp-page="./Edit" asp-page-handler="StartUpdate">
+                    Edit Role
+                </a>
+                <a asp-route-roleid="@role.Id" class="btn btn-danger btn-sm"
+                   asp-page="./Delete" asp-page-handler="StartUpdate">
+                    Delete
+                </a>
+            </td>
+        </tr>
+    }
+</table>

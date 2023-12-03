@@ -205,20 +205,22 @@ namespace VasaHotel_main.Controllers
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Create_booking( [Bind("booking_id,checkout_day,checkin_day,method_payment,is_payment,CustomerID,RoomID,total_price")] Booking booking)
-        {
-          
-            if (ModelState.IsValid)
+        {   if (ModelState.IsValid)
             {
-               
-                var roomId = TempData["roomid"].ToString();
-                var Customerid = TempData["Customerid"].ToString();
+          var roomId = TempData["roomid"].ToString();//Get the value of TempData with the key "roomid" and convert it to a string
+           var Customerid = TempData["Customerid"].ToString();
+                //Get the value of TempData with the key "Customerid" and convert it to a string
                 TimeSpan totalday = booking.checkout_day - booking.checkin_day;
+                //calculates the number of days between the payment date and check-in date of the booking
                 int numberOfDays = (int)totalday.TotalDays;
-               totalPrice = priceroom * numberOfDays;
+                //convert date to integer
+                totalPrice = priceroom * numberOfDays;
+                //calculate the total price by multiplying the room price (priceroom) by the number of days (numberOfDays)
                 booking = new Booking
-                { checkout_day = booking.checkout_day,
+                //A new `Booking` object is created with default properties and imported
+                {
+                    checkout_day = booking.checkout_day,
                     checkin_day = booking.checkin_day,
-                  
                     method_payment = "cash",
                     is_payment = false,
                     RoomID = int.Parse(roomId),
@@ -226,12 +228,11 @@ namespace VasaHotel_main.Controllers
                   total_price = totalPrice,
                     // Set other prorties of the booking as needed
                 };
-             
-                
                 _context.Add(booking);
-                await _context.SaveChangesAsync();
+                await _context.SaveChangesAsync();//Save changes to the database
                 bookingid = _context.Booking.ToList().LastOrDefault().booking_id;
                 return RedirectToAction("Detail_booking", new { id = bookingid });
+                //redirect to the "Detail_booking" action with the booking ID parameter
             }
             ViewData["CustomerID"] = new SelectList(_context.Customer, "customer_id", "customer_id", booking.CustomerID);
             ViewData["RoomID"] = new SelectList(_context.Room, "room_id", "Name", booking.RoomID);

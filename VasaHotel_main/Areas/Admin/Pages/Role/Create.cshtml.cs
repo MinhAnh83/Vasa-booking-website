@@ -17,18 +17,14 @@ namespace VasaHotel_main.Areas.Admin.Role
         {
         }
         public class InputModel
-        {
-            public string ID { set; get; }
-
+        {      public string ID { set; get; }
             [Required(ErrorMessage = "Phải nhập tên role")]
             [Display(Name = "Tên của Role")]
             [StringLength(100, ErrorMessage = "{0} dài {2} đến {1} ký tự.", MinimumLength = 3)]
             public string Name { set; get; }
-
         }
         [BindProperty]
         public InputModel Input { set; get; }
-
         [BindProperty]
         public bool IsUpdate { set; get; }
         public void OnGet()
@@ -36,22 +32,19 @@ namespace VasaHotel_main.Areas.Admin.Role
         }
         
         public async Task<IActionResult> OnPostAsync()
-        {
-
-            if (!ModelState.IsValid)
+        {  if (!ModelState.IsValid)
             {
                 StatusMessage = null;
                 return Page();
             }
-
-           
-                // TẠO MỚI
+                // Create new
                 var newRole = new IdentityRole(Input.Name);
-                // Thực hiện tạo Role mới
+                // Create a new role 
                 var rsNewRole = await _roleManager.CreateAsync(newRole);
                 if (rsNewRole.Succeeded)
                 {
                     StatusMessage = $"Đã tạo role mới thành công: {newRole.Name}";
+                //Export information that created the role successfully
                     return RedirectToPage("./Index");
                 }
                 else

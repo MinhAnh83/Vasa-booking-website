@@ -4,12 +4,8 @@
     ViewData["Title"] = "Create";
     Layout = "~/Views/Shared/_Layout.cshtml";
     var data = ViewBag.Price;
+    //Declare the variable "data" to store the value of ViewBag.Price.
 }
-
-
-
-
-
 <img src="~/image/hero/hero-2.jpg" />
 <div style="text-align: center; margin-top: 30px">
     <h4>Step <span>2</span> </h4>
@@ -23,24 +19,20 @@
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
 
             <div class="form-group">
-                <label  class="control-label">Checkin day: </label>
+                <label class="control-label">Checkin day: </label>
                 <input asp-for="checkin_day" class="form-control" />
+                @*enter checkin day*@
                 <span asp-validation-for="checkin_day" class="text-danger"></span>
             </div>
             <div class="form-group">
                 <label  class="control-label">Checkout day:</label>
                 <input asp-for="checkout_day" class="form-control" />
+                @*enter checkout day*@
                 <span asp-validation-for="checkout_day" class="text-danger"></span>
             </div>
-            @*<div class="form-group">
-                <label asp-for="method_payment" class="control-label"></label>
-                <input asp-for="method_payment" class="form-control" />
-                <span asp-validation-for="method_payment" class="text-danger"></span>
-            </div>*@
-
             <div class="form-group">
-                <h5>Price:  <p>@data đ</p></h5>
-               
+                <h5>Price:  <p>@data đ/day </p></h5>
+                @*display the room price based on the value of the "data" variable*@
             </div>
             <div class="form-group">
                 <input type="submit" value="Create" class="btn btn-primary" />

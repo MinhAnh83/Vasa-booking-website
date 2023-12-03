@@ -17,9 +17,6 @@ namespace VasaHotel_main.Areas.Admin.Role
         {
         }
 
-       
-      
-
         [BindProperty]
         public bool IsUpdate { set; get; }
         public IdentityRole role { get; set; }
@@ -32,7 +29,6 @@ namespace VasaHotel_main.Areas.Admin.Role
                 return NotFound("Can't find role ");
             }
             return Page();
-
         }
         
         public async Task<IActionResult> OnPostAsync(string roleid)
@@ -40,8 +36,6 @@ namespace VasaHotel_main.Areas.Admin.Role
             if (roleid == null) return NotFound("Can't find role ");
             role = await _roleManager.FindByIdAsync(roleid);
             if (roleid == null) return NotFound("Can't find role ");
-           
-
             var result = await _roleManager.DeleteAsync(role);
                 
                 if (result.Succeeded)
